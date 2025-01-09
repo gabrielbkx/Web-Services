@@ -1,5 +1,6 @@
 package com.gabrielbkx.curso.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,10 +26,10 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Long id, User client, Instant moment) {
+    public Order(Long id, Instant moment,User client) {
         this.id = id;
-        this.client = client;
         this.moment = moment;
+        this.client = client;
     }
 
     public Long getId() {
