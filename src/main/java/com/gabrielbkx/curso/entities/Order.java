@@ -1,11 +1,8 @@
 package com.gabrielbkx.curso.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabrielbkx.curso.entities.enums.OrderStatus;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;

@@ -1,7 +1,6 @@
 package com.gabrielbkx.curso.services;
 
 import com.gabrielbkx.curso.entities.Order;
-import com.gabrielbkx.curso.entities.User;
 import com.gabrielbkx.curso.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
