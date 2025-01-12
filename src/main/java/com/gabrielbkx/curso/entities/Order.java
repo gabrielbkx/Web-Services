@@ -5,7 +5,9 @@ import com.gabrielbkx.curso.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -16,19 +18,22 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy:MM:dd:'T'HH:mm:ss'Z'",timezone = "GMT")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy:MM:dd:'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
     private Integer orderStatus;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private  User client;
+    private User client;
 
     public Order() {
     }
 
-    public Order(Long id, Instant moment,OrderStatus orderStatus,User client) {
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> Items = new HashSet<>();
+
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
         this.client = client;
@@ -70,6 +75,9 @@ public class Order implements Serializable {
         this.client = client;
     }
 
+    public Set<OrderItem> getItems() {
+        return Items;
+    }
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
