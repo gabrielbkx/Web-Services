@@ -5,7 +5,6 @@ import com.gabrielbkx.curso.entities.pk.OrderItemPk;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -66,6 +65,11 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+
+    public Double getSubTotal(){
+        return getPrice() * getQuantity();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -77,4 +81,6 @@ public class OrderItem implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
+
 }

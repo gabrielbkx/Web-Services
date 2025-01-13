@@ -1,6 +1,7 @@
 package com.gabrielbkx.curso.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabrielbkx.curso.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -59,7 +60,6 @@ public class Order implements Serializable {
         this.moment = moment;
     }
 
-
     public OrderStatus getOrderStatus() {
         return OrderStatus.valueOf(orderStatus);
     }
@@ -90,6 +90,13 @@ public class Order implements Serializable {
         return Items;
     }
 
+    public Double getTotal(){
+        Double totalPrice = 0.0;
+        for (OrderItem item : Items) {
+            totalPrice += item.getSubTotal();
+        }
+        return totalPrice;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -102,6 +109,7 @@ public class Order implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }
 
 
