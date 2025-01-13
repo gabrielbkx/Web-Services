@@ -34,6 +34,7 @@ public class Order implements Serializable {
     public Order() {
     }
 
+
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> Items = new HashSet<>();
 
@@ -59,6 +60,7 @@ public class Order implements Serializable {
     public void setMoment(Instant moment) {
         this.moment = moment;
     }
+
 
     public OrderStatus getOrderStatus() {
         return OrderStatus.valueOf(orderStatus);
@@ -90,8 +92,9 @@ public class Order implements Serializable {
         return Items;
     }
 
+
     public Double getTotal(){
-        Double totalPrice = 0.0;
+        double totalPrice = 0.0;
         for (OrderItem item : Items) {
             totalPrice += item.getSubTotal();
         }
@@ -109,6 +112,7 @@ public class Order implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 
 }
 
